@@ -14,12 +14,14 @@ CASE:
 Um cliente fictício passou as 'stories' com os detalhes do que ele precisa:
 
 Aplicativo móvel:
+
 1. Como visitante no aplicativo eu devo conseguir criar uma conta utilizando meu email e uma senha.
 2. Como visitante no aplicativo eu devo conseguir me autenticar utilizando meu email e senha.
 3. Após logar devo ver meu nome de usuário e a quantidade de vezes que realizei login e tempo logado.
 4. Como usuário no aplicativo eu devo poder alterar meu cadastro e me deslogar.
 
 Web:
+
 1. Como usuário administrador eu devo conseguir me autenticar utilizando meu email e senha.
 2. Como usuário administrador devo poder visualizar todos os usuários.
 3. Como usuário administrador devo poder alterar os dados de qualquer usuário. 
