@@ -1,0 +1,10 @@
+# Laravel
+web/node_modules
+web/public/storage
+web/public/hot
+web/storage/*.key
+web/vendor
+web/.idea
+web/Homestead.json
+web/Homestead.yaml
+web/.env
