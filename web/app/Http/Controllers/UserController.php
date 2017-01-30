@@ -112,6 +112,20 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        try {
+            $user->delete();
+
+            $notice = [
+                'alert' => 'success',
+                'message' => 'Usuário deletado com sucesso!',
+            ];
+        } catch (Exception $except) {
+            $notice = [
+                'alert' => 'danger',
+                'message' => $except->getMessage()
+            ];
+        }
+
+        return redirect()->route('users.index')->with('notice', $notice);
     }
 }
