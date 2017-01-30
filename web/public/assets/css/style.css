@@ -1163,7 +1163,26 @@ PANELS CONFIGURATIONS
 	padding-bottom: 5px;
 }
 .content-panel h4 {
-	margin-left: 10px;
+    margin-left: 10px;
+}
+.content-panel hr {
+    margin-top: 0px;
+}
+.content-panel header {
+    padding: 20px;
+}
+.content-panel header h4 {
+    margin: 0px;
+}
+
+@media screen and (max-width: 768px) {
+    .content-panel header .pull-right {
+    	float: none !important;
+    }
+    .content-panel header a.btn {
+        width: 100%;
+        margin-top: 20px;
+    }
 }
 
 /*WEATHER PANELS*/

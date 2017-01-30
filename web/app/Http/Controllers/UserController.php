@@ -21,6 +21,18 @@ class UserController extends Controller
     }
 
     /**
+     * Display a listing of the resource from trash.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function trash()
+    {
+        $users = User::onlyTrashed()->get();
+
+        return view('users.trash')->with('users', $users);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -117,7 +129,7 @@ class UserController extends Controller
 
             $notice = [
                 'alert' => 'success',
-                'message' => 'Usuário deletado com sucesso!',
+                'message' => 'Usuário removido com sucesso!',
             ];
         } catch (Exception $except) {
             $notice = [
@@ -127,5 +139,57 @@ class UserController extends Controller
         }
 
         return redirect()->route('users.index')->with('notice', $notice);
+    }
+
+    /**
+     * Remove the specified resource from trash.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function forceDelete($id)
+    {
+        try {
+            $user = User::onlyTrashed()->find($id);
+            $user->forceDelete();
+
+            $notice = [
+                'alert' => 'success',
+                'message' => 'Usuário deletado com sucesso!',
+            ];
+        } catch (Exception $except) {
+            $notice = [
+                'alert' => 'danger',
+                'message' => $except->getMessage()
+            ];
+        }
+
+        return redirect()->route('users.trash')->with('notice', $notice);
+    }
+
+    /**
+     * Restore the specified resource from trash.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id)
+    {
+        try {
+            $user = User::onlyTrashed()->find($id);
+            $user->restore();
+
+            $notice = [
+                'alert' => 'success',
+                'message' => 'Usuário restaurado com sucesso!',
+            ];
+        } catch (Exception $except) {
+            $notice = [
+                'alert' => 'danger',
+                'message' => $except->getMessage()
+            ];
+        }
+
+        return redirect()->route('users.trash')->with('notice', $notice);
     }
 }

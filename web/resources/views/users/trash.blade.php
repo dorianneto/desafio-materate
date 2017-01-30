@@ -13,8 +13,8 @@
       <div class="col-md-12">
           <div class="content-panel">
               <header>
-                <h4 class="pull-left">Listagem dos usuários</h4>
-                <a href="{{ route('users.trash') }}" class="btn btn-default pull-right"><i class="fa fa-trash-o"></i> Lixeira</a>
+                <h4 class="pull-left">Listagem dos usuários <span class="badge">lixeira</span></h4>
+                <a href="{{ route('users.index') }}" class="btn btn-default pull-right"><i class="fa fa-arrow-left"></i> Voltar</a>
                 <div class="clearfix"></div>
               </header>
               <hr>
@@ -32,18 +32,18 @@
                     </thead>
                     <tbody>
                       @foreach($users as $user)
-                        <tr>
+                        <tr class="danger">
                             <td>{{ $user->id }}</td>
-                            <td><a href="{{ route('users.edit', [$user->id]) }}">{{ $user->name }}</a></td>
+                            <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->created_at }}</td>
                             <td>{{ $user->updated_at }}</td>
                             <td>
-                                <form class="form-inline" action="{{ route('users.destroy', [$user->id]) }}" method="post">
+                                <form class="form-inline" action="{{ route('users.force_delete', [$user->id]) }}" method="post">
                                   {{ method_field('DELETE') }}
                                   {{ csrf_field() }}
 
-                                  <a href="{{ route('users.edit', [$user->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                  <a href="{{ route('users.restore', [$user->id]) }}" class="btn btn-success btn-xs"><i class="fa fa-undo"></i></a>
                                   <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>
                                 </form>
                             </td>
