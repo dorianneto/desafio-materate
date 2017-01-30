@@ -3,16 +3,7 @@
 @section('content')
   <h3><i class="fa fa-users"></i> Usuários</h3>
 
-  @if (count($errors) > 0)
-    <div class="alert alert-danger">
-      <p>Alguns erros foram encontrados:</p>
-      <ul>
-        @foreach ($errors->all() as $error)
-          <li>{{ $error }}</li>
-        @endforeach
-      </ul>
-    </div>
-  @endif
+  @include('alert.validate')
 
   <div class="row mt">
   	<div class="col-lg-12">

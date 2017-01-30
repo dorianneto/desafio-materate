@@ -3,11 +3,7 @@
 @section('content')
   <h3><i class="fa fa-users"></i> Usuários</h3>
 
-  @if (session()->has('notice'))
-    <div class="alert alert-{{ session('notice')['alert'] }}">
-      <p>{{ session('notice')['message'] }}</p>
-    </div>
-  @endif
+  @include('alert.notice')
 
   <div class="row mt">
       <div class="col-md-12">

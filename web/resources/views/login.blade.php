@@ -7,11 +7,7 @@
 
           <h2 class="form-login-heading">Desafio MateRate</h2>
           <div class="login-wrap">
-            @if (session()->has('notice'))
-              <div class="alert alert-{{ session('notice')['alert'] }}">
-                <p>{{ session('notice')['message'] }}</p>
-              </div>
-            @endif
+            @include('alert.notice')
             <input type="email" name="email" class="form-control" placeholder="Seu email" autofocus>
             <br>
             <input type="password" name="password" class="form-control" placeholder="Sua senha">
