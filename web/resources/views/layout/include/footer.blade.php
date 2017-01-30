@@ -1,10 +1,7 @@
       <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
-              2014 - Alvarez.is
-              <a href="basic_table.html#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
+              2017 - Sistema web desenvolvido em Laravel 5.4 para o desafio da MateRate por Dorian Neto
           </div>
       </footer>
       <!--footer end-->
@@ -17,20 +14,9 @@
     <script src="{{ asset('assets/js/jquery.scrollTo.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.nicescroll.js') }}" type="text/javascript"></script>
 
-
     <!--common script for all pages-->
     <script src="{{ asset('assets/js/common-scripts.js') }}"></script>
-
     <!--script for this page-->
-
-  <script>
-      //custom select box
-
-      $(function(){
-          $('select.styled').customSelect();
-      });
-
-  </script>
 
   </body>
 </html>
