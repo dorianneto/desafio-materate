@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -59,7 +60,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.update')->with('user', $user);
     }
 
     /**
@@ -71,7 +72,36 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $password = $request->input('password');
+        $rules    = [
+            'name'  => 'required|max:191',
+            'email' => ['required', 'max:191', Rule::unique('users')->ignore($user->id)]
+        ];
+
+        if (!empty($password)) {
+            $rules['password'] = 'alpha_num|between:6,20';
+        }
+
+        $this->validate($request, $rules);
+
+        try {
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            if (!empty($password)) { $user->password = bcrypt($password);}
+            $user->save();
+
+            $notice = [
+                'alert' => 'success',
+                'message' => 'Usuário alterado com sucesso!',
+            ];
+        } catch (Exception $except) {
+            $notice = [
+                'alert' => 'danger',
+                'message' => $except->getMessage()
+            ];
+        }
+
+        return redirect()->route('users.index')->with('notice', $notice);
     }
 
     /**

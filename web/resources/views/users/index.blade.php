@@ -2,6 +2,13 @@
 
 @section('content')
   <h3><i class="fa fa-users"></i> Usuários</h3>
+
+  @if (session()->has('notice'))
+    <div class="alert alert-{{ session('notice')['alert'] }}">
+      <p>{{ session('notice')['message'] }}</p>
+    </div>
+  @endif
+
   <div class="row mt">
       <div class="col-md-12">
           <div class="content-panel">
@@ -22,13 +29,13 @@
                     @foreach($users as $user)
                       <tr>
                           <td>{{ $user->id }}</td>
-                          <td><a href="#">{{ $user->name }}</a></td>
+                          <td><a href="{{ route('users.edit', [$user->id]) }}">{{ $user->name }}</a></td>
                           <td>{{ $user->email }}</td>
                           <td>{{ $user->created_at }}</td>
                           <td>{{ $user->updated_at }}</td>
                           <td>
-                              <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                              <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                              <a href="{{ route('users.edit', [$user->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                              <a class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
                           </td>
                       </tr>
                     @endforeach
